@@ -4,6 +4,8 @@ pragma solidity ^0.8.0;
 
 import "./PriceConverter.sol";
 
+error NoOwner();
+
 contract FundMe {
 //780780
 //678939
@@ -21,7 +23,8 @@ contract FundMe {
     }
 
     modifier onlyOwner {
-        require(msg.sender == i_owner, "Sender is not owner!");
+        // require(msg.sender == i_owner, "Sender is not owner!");
+        if(msg.sender == i_owner) { revert NoOwner();}
         _;
     }
 
